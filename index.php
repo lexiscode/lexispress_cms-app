@@ -57,7 +57,7 @@ else
                     <h2><?= htmlspecialchars($article["title"]) ?></h2> 
                     <p><?= htmlspecialchars($article["content"]) ?></p>
                     <p><?= $article["date_published"]?></p>
-                    <i><a href="article.php?id=<?= $article['id'];?>" target="_blank">Read more</a></i>
+                    <i><a href="article.php?id=<?= $article['id'];?>">Read more</a></i>
                 </article>
             </li>
         <?php endforeach; ?>
