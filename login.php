@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <?php require "includes/header.php"; ?>
 
+<h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
+
 <h2>Login</h2>
 
 <?php if (!empty($error)): ?>
