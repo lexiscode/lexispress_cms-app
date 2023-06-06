@@ -6,10 +6,10 @@ require "includes/get_article_id.php";
 // connect to the database server
 $conn = connectDB();
 
-// Reading from the database to get specific articles by their ids
-
+// This gets the id from the browser tab when the save button was clicked in the new article page
 if (isset($_GET['id'])){
 
+    // Reading from the database to get specific article row by their id
     $article = getArticle($conn, $_GET['id']);
     
 } else {

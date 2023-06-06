@@ -22,3 +22,6 @@ function validateArticle($title, $content){
 
     return $errors;
 }
+
+/* this stuff as well can be done with the html required keyword, just that some websites
+too prefer stating the fields that wasn't filled which made the submit button not to go through. */

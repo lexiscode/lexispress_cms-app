@@ -35,9 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $content = $_POST['content'];
             $date_published = $_POST['date_published'];
 
+            // checking for empty fields, and throwing error if empty 
             $errors = validateArticle($title, $content);
 
-            // makes the date field "null" by default if not filled
+            // makes the date field "null" by default if not filled, rather than seeing 0000:00:00 00:00
             if ($date_published == ''){
                 $date_published = null;
             }
@@ -52,21 +53,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $sql = "INSERT INTO article (title, content, date_published)
                         VALUES (?, ?, ?)";
 
+                // Prepares an SQL statement for execution
                 $stmt = mysqli_prepare($conn, $sql);
 
                 if ($stmt === false){
                     echo mysqli_error($conn);
                 } else {
                     // i - integer, d - double, s - string
+                    // Bind variables for the parameter markers in the SQL statement prepared
                     mysqli_stmt_bind_param($stmt, "sss", $title, $content, $date_published);
 
+                    // Executes a prepared statement
                     $results = mysqli_stmt_execute($stmt);
 
                     // checking for errors, if none, then redirect the user to the new article page
                     if ($results === false){
                         echo mysqli_stmt_error($stmt);
                     } else {
+
+                        //Returns the value generated for an AUTO_INCREMENT column by the last query
                         $id = mysqli_insert_id($conn);
+                        
                         // it is more advisable to use absolute paths below than relative path
                         header("Location: http://localhost/lexispress_cms-app/article.php?id=$id"); 
                         exit;
