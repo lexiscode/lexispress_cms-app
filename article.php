@@ -10,7 +10,7 @@ $conn = connectDB();
 if (isset($_GET['id'])){
 
     // Reading from the database to get specific article row by their id
-    $article = getArticle($conn, $_GET['id']);
+    $article = getArticle($conn, $_GET['id']); // this holds an associative array
     
 } else {
     // no error message printed when there's no id included in the url link
@@ -33,7 +33,7 @@ if (isset($_GET['id'])){
         <a href="edit_article.php?id=<?= $article['id']; ?>">Edit</a>
 
         <form method= "POST" action="delete_article.php?id=<?= $article['id']; ?>">
-            <button>Delete</button>
+            <button type="submit" name="delete">Delete</button>
         </form>
         
      

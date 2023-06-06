@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Check if the submit button has been clicked, and check if the fields ain't empty also
     if (isset($_POST['save'])){
-        if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['date_published'])){
+        if (!empty($_POST['title']) && !empty($_POST['content'])){
 
             // getting fields contents, then checking for possible empty fields
             $title = $_POST['title'];
