@@ -1,22 +1,29 @@
 <?php
 
+// Initialize the session.
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    if ($_POST['username'] == 'lexiscode' && $_POST['password'] == 'secret123'){
 
-        // this helps prevent session fixation attacks
-        session_regenerate_id(true);
+    // Check if the submit button has been clicked, and check if the fields ain't empty also
+    if (isset($_POST['sign-in'])){
+        if (!empty($_POST['username']) && !empty($_POST['password'])){
+            if ($_POST['username'] == 'lexiscode' && $_POST['password'] == 'secret123'){
 
-        $_SESSION['is_logged_in'] = true;
-        
-        // redirect to the index page
-        header('Location: index.php');
-        exit;
+                // this helps prevent session fixation attacks
+                session_regenerate_id(true);
 
-    } else {
+                $_SESSION['is_logged_in'] = true;
+                
+                // redirect to the index page
+                header('Location: index.php');
+                exit;
 
-        $error = "login details incorrect";
+            } else {
+
+                $error = "login details incorrect";
+            }
+        }
     }
 }
 
@@ -40,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <input type="password" name="password" id="password">
     <br> <br>
 
-    <button type="submit">Sign in</button>
+    <button type="submit" name="sign-in">Sign in</button>
 </form>
 
 
