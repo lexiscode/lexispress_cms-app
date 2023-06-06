@@ -2,7 +2,6 @@
 
 require "includes/db_connect.php";
 require "includes/get_article_id.php";
-require "includes/validate_article_form.php";
 
 // connect to the database server
 $conn = connectDB();
