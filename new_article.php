@@ -8,7 +8,9 @@ session_start();
 
 // this is no longer necessary if you won't display a link to the new article page for non-login users
 if (!isLoggedIn()){
-    die("Unauthorized. You must be logged in first.");
+    
+    die("Unauthorized. You must be logged in first." . PHP_EOL . "<a href='index.php'>Back To Homepage</a>");
+    
 }
 
 // defining the variables in the global
