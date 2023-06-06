@@ -27,7 +27,7 @@ else
 
 <?php require "includes/header.php"; ?>
 
-<h1 align="center"><a href="http://localhost/lexispress_cms-app/index" style="text-decoration: none">-- LexisPress --</a></h1>
+<h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
 <h2>This is our Blog Posts</h2>
 
 <!-- Working with Sessions-->
