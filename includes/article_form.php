@@ -23,7 +23,7 @@
         <input type="datetime-local" name="date_published" id="date_published" value="<?= $date_published; ?>">
     </div>
 
-    <button type="submit">Save</button> <input type="reset" value="Reset">
+    <button type="submit" name="save">Save</button> <input type="reset" value="Reset">
 
 </form>
 

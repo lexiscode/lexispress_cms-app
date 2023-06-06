@@ -4,16 +4,16 @@ require "includes/db_connect.php";
 require "includes/validate_article_form.php";
 require "includes/auth.php";
 
+// Initialize the session.
 session_start();
 
-// this is no longer necessary if you won't display a link to the new article page for non-login users
+// NB: This below will no longer be necessary if you won't be displaying the new article link page for non-login users
 if (!isLoggedIn()){
     
     die("Unauthorized. You must be logged in first." . PHP_EOL . "<a href='index.php'>Back To Homepage</a>");
-    
 }
 
-// defining the variables in the global
+// Defining the variables in the global
 $title = '';
 $content = '';
 $date_published = '';
@@ -26,49 +26,55 @@ variable does not exist.
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    // getting fields contents, then checking for possible empty fields
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $date_published = $_POST['date_published'];
+    // Check if the submit button has been clicked, and check if the fields ain't empty also
+    if (isset($_POST['save'])){
+        if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['date_published'])){
 
-    $errors = validateArticle($title, $content);
+            // getting fields contents, then checking for possible empty fields
+            $title = $_POST['title'];
+            $content = $_POST['content'];
+            $date_published = $_POST['date_published'];
 
-    // makes the date field "null" by default if not filled
-    if ($date_published == ''){
-        $date_published = null;
-    }
+            $errors = validateArticle($title, $content);
 
-    // the ADD functionality should go through if no errors (non-empty fields) are encountered
-    if (empty($errors)){
-        
-        // connect to the database server
-        $conn = connectDB();
+            // makes the date field "null" by default if not filled
+            if ($date_published == ''){
+                $date_published = null;
+            }
 
-        // inserts the data into the database server
-        $sql = "INSERT INTO article (title, content, date_published)
-                VALUES (?, ?, ?)";
+            // the ADD functionality should go through if no errors (non-empty fields) are encountered
+            if (empty($errors)){
+                
+                // connect to the database server
+                $conn = connectDB();
 
-        $stmt = mysqli_prepare($conn, $sql);
+                // inserts the data into the database server
+                $sql = "INSERT INTO article (title, content, date_published)
+                        VALUES (?, ?, ?)";
 
-        if ($stmt === false){
-            echo mysqli_error($conn);
-        } else {
-            // i - integer, d - double, s - string
-            mysqli_stmt_bind_param($stmt, "sss", $title, $content, $date_published);
+                $stmt = mysqli_prepare($conn, $sql);
 
-            $results = mysqli_stmt_execute($stmt);
+                if ($stmt === false){
+                    echo mysqli_error($conn);
+                } else {
+                    // i - integer, d - double, s - string
+                    mysqli_stmt_bind_param($stmt, "sss", $title, $content, $date_published);
 
-            // checking for errors, if none, then redirect the user to the new article page
-            if ($results === false){
-                echo mysqli_stmt_error($stmt);
-            } else {
-                $id = mysqli_insert_id($conn);
-                // it is more advisable to use absolute paths below than relative path
-                header("Location: http://localhost/lexispress_cms-app/article.php?id=$id"); 
-                exit;
+                    $results = mysqli_stmt_execute($stmt);
+
+                    // checking for errors, if none, then redirect the user to the new article page
+                    if ($results === false){
+                        echo mysqli_stmt_error($stmt);
+                    } else {
+                        $id = mysqli_insert_id($conn);
+                        // it is more advisable to use absolute paths below than relative path
+                        header("Location: http://localhost/lexispress_cms-app/article.php?id=$id"); 
+                        exit;
+                    }
+                }
+
             }
         }
-
     }
  
 }
@@ -87,3 +93,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!--HTML Footer-->
 <?php require "includes/footer.php"; ?>
+
+

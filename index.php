@@ -3,6 +3,7 @@
 require "includes/db_connect.php";
 require "includes/auth.php";
 
+// Initialize the session.
 session_start();
 
 
