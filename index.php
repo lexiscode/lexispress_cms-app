@@ -36,7 +36,8 @@ else
 <?php if (isLoggedIn()): ?>
     <p>You are logged in. <a href="logout.php">Logout</a></p>
     <!-- only logged in user should access this link below-->
-    <a href="new_article.php">New article</a>
+    <!--<a href="new_article.php">New article</a>-->
+    
 <?php else: ?>
     <p>You are logged out. <a href="login.php">Login</a></p>
 <?php endif; ?>
@@ -44,6 +45,7 @@ else
 <!-- Since a non-login user can't access this "new article" link below, lets remove it for them:
 <a href="new_article.php">New article</a> 
 -->
+<a href="new_article.php">New article</a>
 
 <?php if(!empty($articles)): ?>
     <ul>
