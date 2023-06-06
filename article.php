@@ -20,7 +20,7 @@ if (isset($_GET['id'])){
 
 <?php require "includes/header.php"; ?>
 
-    <h1>This is our Blog Posts</h1>
+    <h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
 
     <?php if ($article !== null): ?>
 
