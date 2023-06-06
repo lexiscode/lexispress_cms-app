@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             } else {
                 $id = mysqli_insert_id($conn);
                 // it is more advisable to use absolute paths below than relative path
-                header("Location: http://localhost/practice/article.php?id=$id"); 
+                header("Location: http://localhost/lexispress_cms-app/article.php?id=$id"); 
                 exit;
             }
         }
