@@ -8,7 +8,7 @@ session_start();
 
 // this is no longer necessary if you won't display a link to the new article page for non-login users
 if (!isLoggedIn()){
-    die("You must be logged in first.");
+    die("Unauthorized. You must be logged in first.");
 }
 
 // defining the variables in the global
