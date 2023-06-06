@@ -37,7 +37,8 @@ else
     <p>You are logged in. <a href="logout.php">Logout</a></p>
     <!-- only logged in user should access this link below-->
     <!--<a href="new_article.php">New article</a>-->
-    
+    <p>Welcome back!😊</p>
+
 <?php else: ?>
     <p>You are logged out. <a href="login.php">Login</a></p>
 <?php endif; ?>
