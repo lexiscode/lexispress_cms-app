@@ -25,6 +25,9 @@ else
 ?>
 
 
+<!-- HTML header codes that ends with the body tag -->
+
+
 <?php require "includes/header.php"; ?>
 
 <h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
@@ -35,17 +38,16 @@ else
 
 <?php if (isLoggedIn()): ?>
     <p>You are logged in. <a href="logout.php">Logout</a></p>
+    <p>Welcome back!😊</p>
     <!-- only logged in user should access this link below-->
     <!--<a href="new_article.php">New article</a>-->
-    <p>Welcome back!😊</p>
 
 <?php else: ?>
     <p>You are logged out. <a href="login.php">Login</a></p>
 <?php endif; ?>
 
-<!-- Since a non-login user can't access this "new article" link below, lets remove it for them:
-<a href="new_article.php">New article</a> 
--->
+<!--Below we want all users to see this New Article link, even though not everyone will be allowed
+to access it -->
 <a href="new_article.php">New article</a>
 
 <?php if(!empty($articles)): ?>
@@ -53,7 +55,7 @@ else
         <?php foreach ($articles as $article): ?>
             <li>
                 <article>
-                    <!-- htmlspecialchars() prevents code injections -->
+                    <!-- htmlspecialchars() prevents XSS attack or code injections -->
                     <h2><?= htmlspecialchars($article["title"]) ?></h2> 
                     <p><?= htmlspecialchars($article["content"]) ?></p>
                     <p><?= $article["date_published"]?></p>
@@ -66,6 +68,8 @@ else
     <p>No articles found.</p>
 <?php endif; ?>
 
+
+<!-- HTML footer codes that ends with the closing body tag -->
 <?php require "includes/footer.php"; ?>
 
 
