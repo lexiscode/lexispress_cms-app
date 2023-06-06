@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     } else {
 
-        $error = "Login incorrect";
+        $error = "login details incorrect";
     }
 }
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 <h2>Login</h2>
 
 <?php if (!empty($error)): ?>
-    <p><?= $error ?></p>
+    <p>* <i><?= $error ?></i></p>
 <?php endif; ?>
 
 <form method="POST" action="">
