@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $content = $_POST['content'];
             $date_published = $_POST['date_published'];
 
+            // checking for empty fields, and throwing error if empty 
             $errors = validateArticle($title, $content);
 
             // makes the date field "null" by default if not filled
@@ -60,14 +61,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                             date_published = ?
                         WHERE id = ?";
 
+                // Prepares an SQL statement for execution
                 $stmt = mysqli_prepare($conn, $sql);
 
                 if ($stmt === false){
                     echo mysqli_error($conn);
                 } else {
-                    // i - integer, d - double, s - string
+                    
+                    // Bind variables for the parameter markers in the SQL statement prepared
                     mysqli_stmt_bind_param($stmt, "sssi", $title, $content, $date_published, $id);
 
+                    // Executes a prepared statement
                     $results = mysqli_stmt_execute($stmt);
 
                     // checking for errors, if none, then redirect the user to the new article page
