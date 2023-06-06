@@ -8,6 +8,8 @@
 <?php endif; ?>
 
 <form method="POST">
+    <!-- the value(s) set below are only active for edit_article page, no data is retrieved in a new_article page; 
+    even those this form is used for both pages -->
     <div>
         <label for="title">Title</label>
         <input type="text" name="title" id="title" placeholder="Article's title" value="<?= htmlspecialchars($title); ?>">

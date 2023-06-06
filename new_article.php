@@ -26,7 +26,7 @@ variable does not exist.
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    // Check if the submit button has been clicked, and check if the fields ain't empty also
+    // Check if the save/submit button has been clicked, and check if the fields ain't empty also
     if (isset($_POST['save'])){
         if (!empty($_POST['title']) && !empty($_POST['content'])){
 

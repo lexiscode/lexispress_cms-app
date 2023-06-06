@@ -14,7 +14,7 @@ if (isset($_GET['id'])){
     $article = getArticle($conn, $_GET['id']); 
 
     if ($article){
-        // Get array values from its keys, which is used in the HTML form below
+        // Get array values from its keys, which then is stored as values in the HTML form below
         $title = $article['title'];
         $content = $article['content'];
         $date_published = $article['date_published'];
@@ -33,46 +33,52 @@ if (isset($_GET['id'])){
 // REPEAT VALIDATION, no need declaring $title, $content, or $date_published variables again here
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    // getting fields contents, then checking for possible empty fields
-    $id = $article['id']; // get id for which we wish to edit from
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $date_published = $_POST['date_published'];
+    // Check if the save/submit button has been clicked, and check if the fields ain't empty also
+    if (isset($_POST['save'])){
+        if (!empty($_POST['title']) && !empty($_POST['content'])){
 
-    $errors = validateArticle($title, $content);
+            // getting fields contents, then checking for possible empty fields
+            $id = $article['id']; // get id for which we wish to edit from
+            $title = $_POST['title'];
+            $content = $_POST['content'];
+            $date_published = $_POST['date_published'];
 
-    // makes the date field "null" by default if not filled
-    if ($date_published == ''){
-        $date_published = null;
-    }
+            $errors = validateArticle($title, $content);
 
-    // the ADD functionality should go through if no errors (non-empty fields) are encountered
-    if (empty($errors)){
+            // makes the date field "null" by default if not filled
+            if ($date_published == ''){
+                $date_published = null;
+            }
 
-        // update the data into the database server
-        $sql = "UPDATE article 
-                SET title = ?, 
-                    content = ?, 
-                    date_published = ?
-                WHERE id = ?";
+            // the ADD functionality should go through if no errors (non-empty fields) are encountered
+            if (empty($errors)){
 
-        $stmt = mysqli_prepare($conn, $sql);
+                // update the data into the database server
+                $sql = "UPDATE article 
+                        SET title = ?, 
+                            content = ?, 
+                            date_published = ?
+                        WHERE id = ?";
 
-        if ($stmt === false){
-            echo mysqli_error($conn);
-        } else {
-            // i - integer, d - double, s - string
-            mysqli_stmt_bind_param($stmt, "sssi", $title, $content, $date_published, $id);
+                $stmt = mysqli_prepare($conn, $sql);
 
-            $results = mysqli_stmt_execute($stmt);
+                if ($stmt === false){
+                    echo mysqli_error($conn);
+                } else {
+                    // i - integer, d - double, s - string
+                    mysqli_stmt_bind_param($stmt, "sssi", $title, $content, $date_published, $id);
 
-            // checking for errors, if none, then redirect the user to the new article page
-            if ($results === false){
-                echo mysqli_stmt_error($stmt);
-            } else {
-                // it is more advisable to use absolute paths below than relative path
-                header("Location: http://localhost/lexispress_cms-app/article.php?id=$id"); 
-                exit;
+                    $results = mysqli_stmt_execute($stmt);
+
+                    // checking for errors, if none, then redirect the user to the new article page
+                    if ($results === false){
+                        echo mysqli_stmt_error($stmt);
+                    } else {
+                        // it is more advisable to use absolute paths below than relative path
+                        header("Location: http://localhost/lexispress_cms-app/article.php?id=$id"); 
+                        exit;
+                    }
+                }
             }
         }
     }
@@ -87,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
 <h2>Edit Article</h2>
 
-<!-- HTML form -->
+<!-- HTML form which is specially for holding old data values by getting them from the database -->
 <?php require "includes/article_form.php"; ?>
 <!--HTML Footer-->
 <?php require "includes/footer.php"; ?>
