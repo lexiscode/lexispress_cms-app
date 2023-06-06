@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             echo mysqli_stmt_error($stmt);
         } else {
             // it is more advisable to use absolute paths below than relative path
-            header("Location: http://localhost/practice/index.php"); 
+            header("Location: http://localhost/lexispress_cms-app/index.php"); 
             exit;
         }
     }
