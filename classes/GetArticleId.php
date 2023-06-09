@@ -11,6 +11,7 @@ class GetArticleId
     public $title;
     public $description;
     public $date_published;
+    
     /**
      * Get all the articles
      * @param object $conn Connection to the database
