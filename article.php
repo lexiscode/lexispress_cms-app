@@ -12,8 +12,7 @@ $conn = $db->getConn();
 if (isset($_GET['id'])){
 
     // Reading from the database to get specific article row by their id
-    //$article = getArticle($conn, $_GET['id']); // this holds an associative array
-    $article = GetArticleId::getArticleById($conn, $_GET['id']);	
+    $article = GetArticleId::getArticleById($conn, $_GET['id']); // this holds an associative array
     
 } else {
     // no error message printed when there's no id included in the url link
