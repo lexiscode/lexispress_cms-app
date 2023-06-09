@@ -33,13 +33,16 @@ class GetArticleId
         // NB: PARAM_INT for int type of parameter, PARAM_STR for string type of parameter, PARAM_BOOL for boolean type of parameter
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        // Set the default fetch mode for this statement
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'GetArticleId');
+
         // Executes a PDO prepared statement
         $result = $stmt->execute();
 
         if ($result === true) {
             
-            // Fetches the next row from a result set in associative array format
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            // Fetches the next row from a result set in an object format
+            return $stmt->fetch();
         }
     }
 }
