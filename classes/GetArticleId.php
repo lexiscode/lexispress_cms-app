@@ -18,7 +18,7 @@ class GetArticleId
      * @param object $conn connection to the database
      * @param integer $id the article ID
      * 
-     * @return mixed An associative array containing the article with that ID, or null if not found
+     * @return mixed An object of this class, or null if not found
      */
 
     public static function getArticleById($conn, $id){
