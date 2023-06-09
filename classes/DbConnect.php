@@ -1,7 +1,17 @@
 <?php
 
+/**
+ * DbConnect
+ * 
+ * A connection to the database
+ */
 class DbConnect
-{
+{   
+    /**
+     * Get the database connection
+     * 
+     * @return PDO object Connection to the database server
+     */
     public function getConn()
     {
         $db_host = "localhost";
@@ -12,6 +22,8 @@ class DbConnect
         $dsn = 'mysql:host='.$db_host. ';dbname='.$db_name.';charset=utf8';
         
         $conn = new PDO($dsn, $db_user, $db_passwd);
+
+        return $conn;
     }
 }
 
