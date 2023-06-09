@@ -14,7 +14,7 @@ $conn = $db->getConn();
 
 // READING FROM THE DATABASE AND CHECKING FOR ERRORS
 $sql = "SELECT * 
-        FROM article 
+        FROM article
         ORDER BY date_published DESC;";
 
 // execute the sql statement, returning a result set as a PDOStatement object
