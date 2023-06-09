@@ -1,7 +1,7 @@
 <?php
 
 require "classes/DbConnect.php";
-require "classes/GetArticleId.php";
+require "classes/GetAll.php";
 require "includes/auth.php";
 
 
