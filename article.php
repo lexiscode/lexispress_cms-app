@@ -1,7 +1,7 @@
 <?php
 
 require "classes/DbConnect.php";
-require "includes/get_article_id.php";
+require "classes/GetArticleId.php";
 
 // Connect to the Database Server
 // create new database object and get the connection by calling the method in the class

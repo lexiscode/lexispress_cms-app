@@ -8,7 +8,6 @@ require "includes/auth.php";
 // Initialize the session.
 session_start();
 
-
 // Connect to the Database Server
 // create new database object and get the connection by calling the method in the class
 $db = new DbConnect();
@@ -21,8 +20,6 @@ $articles = GetArticleId::getAll($conn);
 
 
 <!-- HTML header codes that ends with the body tag -->
-
-
 <?php require "includes/header.php"; ?>
 
 <h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
