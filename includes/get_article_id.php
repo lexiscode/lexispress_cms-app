@@ -12,33 +12,25 @@
 function getArticle($conn, $id){
 
     // This GETS an article row from the database by id
-    $sql = "SELECT * FROM article WHERE id = ?";
+    // in PDO we can use "?" or ":id" but the latter is best, any name can be used other than "id" jsyk 
+    $sql = "SELECT * FROM article WHERE id = :id"; 
 
-    // Prepares an SQL statement for execution
-    $stmt = mysqli_prepare($conn, $sql);
+    // Prepares a statement for execution and returns a PDOstatement object
+    $stmt = $conn->prepare($sql);
 
-    if ($stmt === false){
-        echo mysqli_error($conn);
-    } else {
-        // i - integer
-        // Bind variables for the parameter markers in the SQL statement prepared
-        mysqli_stmt_bind_param($stmt, "i", $id);
+    // Binds a value to a corresponding named/question-mark placeholder in the SQL statement that was used to prepare the statement. 
+    // NB: PARAM_INT for int type of parameter, PARAM_STR for string type of parameter, PARAM_BOOL for boolean type of parameter
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-        // Executes a prepared statement
-        $result = mysqli_stmt_execute($stmt);
+    // Executes a PDO prepared statement
+    $result = $stmt->execute();
 
-        if ($result === false) {
-            echo mysqli_stmt_error($stmt);
-        } else {
-            
-            // Gets a result set from a prepared statement as an object
-            $get_result = mysqli_stmt_get_result($stmt);
-            
-            // Fetch the next row of a result set as an associative, a numeric array, or both
-            return mysqli_fetch_array($get_result, MYSQLI_ASSOC);
-        }
+    if ($result === true) {
+        
+        // Fetches the next row from a result set in associative array format
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
 }
+
 
 

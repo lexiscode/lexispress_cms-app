@@ -17,7 +17,7 @@ $sql = "SELECT *
         FROM article
         ORDER BY date_published DESC;";
 
-// execute the sql statement, returning a result set as a PDOStatement object
+// Execute the sql statement, returning a result set as a PDOStatement object
 $results = $conn->query($sql); 
 
 $articles = $results->fetchAll(PDO::FETCH_ASSOC);
