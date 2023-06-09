@@ -14,7 +14,7 @@ $db = new DbConnect();
 $conn = $db->getConn();
 
 // READING FROM THE DATABASE AND CHECKING FOR ERRORS
-$articles = GetArticleId::getAll($conn);
+$articles = GetAll::getAll($conn);
 
 ?>
 
