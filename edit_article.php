@@ -1,7 +1,7 @@
 <?php
 
-require "includes/db_connect.php";
-require "includes/get_article_id.php";
+require "classes/DbConnect.php";
+require "classes/GetArticleId.php";
 require "includes/validate_article_form.php";
 
 // connect to the database server
