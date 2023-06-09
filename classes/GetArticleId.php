@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Article
+ * GetArticleId
  * 
- * A piece of writing for publication
+ * A piece of writing for publication by identifying the id
  */
 class GetArticleId
 {
