@@ -20,13 +20,8 @@ $sql = "SELECT *
 // execute the sql statement, returning a result set as a PDOStatement object
 $results = $conn->query($sql); 
 
-if ($results === false)
-
-    print_r($conn->errorInfo());
-else
-
-    $articles = $results->fetchAll(PDO::FETCH_ASSOC);
-    //print_r($articles);  prints an associative array
+$articles = $results->fetchAll(PDO::FETCH_ASSOC);
+//print_r($articles);  prints an associative array
 
 ?>
 
