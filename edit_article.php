@@ -2,7 +2,7 @@
 
 require "classes/DbConnect.php";
 require "classes/GetArticleId.php";
-require "includes/validate_article_form.php";
+
 
 // Connect to the Database Server
 // create new database object and get the connection by calling the method in the class
@@ -35,32 +35,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         if (!empty($_POST['title']) && !empty($_POST['content'])){
 
             // getting fields contents, then checking for possible empty fields
-            //$id = $article->id; // get id for which we wish to edit from
             $article->title = $_POST['title'];
             $article->content = $_POST['content'];
             $article->date_published = $_POST['date_published'];
-
-            // checking for empty fields, and throwing error if empty 
-            $errors = validateArticle($article->title, $article->content);
 
             // makes the date field "null" by default if not filled
             if ($article->date_published == ''){
                 $article->date_published = null;
             }
 
-            // the ADD functionality should go through if no errors (non-empty fields) are encountered
-            if (empty($errors)){
+            // UPDATE query
+            $result = $article->updateArticle($conn);
 
-                // UPDATE query
-                $result = $article->updateArticle($conn);
-
-                if ($result){
-                    // it is more advisable to use absolute paths below than relative path
-                    header("Location: http://localhost/lexispress_cms-app/article.php?id={$article->id}"); 
-                    exit;
-                }
-
+            if ($result){
+                // it is more advisable to use absolute paths below than relative path
+                header("Location: http://localhost/lexispress_cms-app/article.php?id={$article->id}"); // get id for which we wish to edit from
+                exit;
             }
+
+            
         }
     }
 }

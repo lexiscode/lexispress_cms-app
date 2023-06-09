@@ -1,7 +1,7 @@
 <!-- This prints out the error message(s) of any non-filled form in the browser -->
-<?php if (!empty($errors)) : ?>
+<?php if (!empty($article->errors)) : ?>
     <ul>
-        <?php foreach ($errors as $error) : ?>
+        <?php foreach ($article->errors as $error) : ?>
             <li><?= $error ?></li>
         <?php endforeach; ?>
     </ul>
