@@ -1,10 +1,12 @@
 <?php
 
-require "includes/db_connect.php";
+require "classes/DbConnect.php";
 require "includes/get_article_id.php";
 
-// connect to the database server
-$conn = connectDB();
+// Connect to the Database Server
+// create new database object and get the connection by calling the method in the class
+$db = new DbConnect();
+$conn = $db->getConn();
 
 // This gets the id from the browser tab when the save button was clicked in the new article page
 if (isset($_GET['id'])){
