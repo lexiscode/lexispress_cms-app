@@ -1,7 +1,7 @@
 <?php
 
 require "includes/db_connect.php";
-require "includes/validate_article_form.php";
+//require "includes/validate_article_form.php";
 require "includes/auth.php";
 
 // Initialize the session.

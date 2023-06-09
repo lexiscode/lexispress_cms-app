@@ -11,7 +11,6 @@ class GetArticleId
     public $title;
     public $description;
     public $date_published;
-    public $errors = [];
 
 
     /**
@@ -61,64 +60,38 @@ class GetArticleId
      
      public function updateArticle($conn)
      {
-        if($this->validate()){
             
-            // update the data into the database server
-            $sql = "UPDATE article 
-            SET title = :title, 
-                content = :content, 
-                date_published = :date_published
-            WHERE id = :id";
+        // update the data into the database server
+        $sql = "UPDATE article 
+        SET title = :title, 
+            content = :content, 
+            date_published = :date_published
+        WHERE id = :id";
 
-            // Prepares the statement for execution
-            $stmt = $conn->prepare($sql);
+        // Prepares the statement for execution
+        $stmt = $conn->prepare($sql);
 
-            // Binds a value to a corresponding named/question-mark placeholder in the SQL statement that was used to prepare the statement. 
-            // NB: PARAM_INT for int type of parameter, PARAM_STR for string type of parameter, PARAM_BOOL for boolean type of parameter
-            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
-            $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
-            $stmt->bindValue(':content', $this->content, PDO::PARAM_STR);
+        // Binds a value to a corresponding named/question-mark placeholder in the SQL statement that was used to prepare the statement. 
+        // NB: PARAM_INT for int type of parameter, PARAM_STR for string type of parameter, PARAM_BOOL for boolean type of parameter
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
+        $stmt->bindValue(':content', $this->content, PDO::PARAM_STR);
 
-            // if date_pulished is empty, then lets insert null into it
-            if ($this->date_published == '') {
-                $stmt->bindValue(':date_published', null, PDO::PARAM_NULL);
-            } else {
-                $stmt->bindValue(':date_published', $this->date_published, PDO::PARAM_STR);
-            }
-
-            // Executes a PDO prepared statement
-            $result = $stmt->execute();
-
-            return $result;
-
+        // if date_pulished is empty, then lets insert null into it
+        if ($this->date_published == '') {
+            $stmt->bindValue(':date_published', null, PDO::PARAM_NULL);
         } else {
-            return $error;
+            $stmt->bindValue(':date_published', $this->date_published, PDO::PARAM_STR);
         }
-         
+
+        // Executes a PDO prepared statement
+        $result = $stmt->execute();
+
+        return $result;
+
+       
      }
 
-
-
-     /**
-     * Validate the article properties, putting any validation error messages in the $error property
-     * 
-     * @return boolean True if the current properties are valid, false otherwise
-     */
-
-    protected function validate()
-    {
-        if ($this->title == ''){
-            $this->errors[] = 'Title must not be empty';
-        }
-        if ($this->content == ''){
-            $this->errors[] = 'Content must not be empty';
-        }
-
-        return empty($this->errors);
-    }
-
-    /* this stuff as well can be done with the html required keyword, just that some websites
-    too prefer stating the fields that wasn't filled which made the submit button not to go through. */
      
 }
 

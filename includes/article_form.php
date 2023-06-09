@@ -12,12 +12,12 @@
     even though this form is used for both pages -->
     <div>
         <label for="title">Title</label>
-        <input type="text" name="title" id="title" placeholder="Article's title" value="<?= htmlspecialchars($article->title); ?>">
+        <input type="text" name="title" id="title" placeholder="Article's title" value="<?= htmlspecialchars($article->title); ?>" required>
     </div>
 
     <div>
         <label for="content">Content</label>
-        <textarea name="content" id="content" cols="30" rows="5" placeholder="Article's content"><?= htmlspecialchars($article->content); ?></textarea>
+        <textarea name="content" id="content" cols="30" rows="5" placeholder="Article's content" required><?= htmlspecialchars($article->content); ?></textarea>
     </div>
 
     <div>
