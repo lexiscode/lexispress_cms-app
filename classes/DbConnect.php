@@ -23,7 +23,15 @@ class DbConnect
         
         $conn = new PDO($dsn, $db_user, $db_passwd);
 
-        return $conn;
+        // Error handling for the database connection
+        try {
+            return $conn;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit;
+        }
+
+    
     }
 }
 
