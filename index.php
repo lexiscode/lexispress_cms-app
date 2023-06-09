@@ -1,14 +1,16 @@
 <?php
 
-require "includes/db_connect.php";
+require "classes/DbConnect.php";
 require "includes/auth.php";
 
 // Initialize the session.
 session_start();
 
 
-// connect to the database server
-$conn = connectDB();
+// Connect to the Database Server
+// create new database object and get the connection by calling the method in the class
+$db = new DbConnect();
+$conn = $db->getConn();
 
 // READING FROM THE DATABASE AND CHECKING FOR ERRORS
 $sql = "SELECT * 
