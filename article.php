@@ -24,7 +24,8 @@ if (isset($_GET['id'])){
 
     <h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
 
-    <?php if ($article !== null): ?>
+    <!--if the article contents anything other than false or null, then run as true-->
+    <?php if ($article): ?>
 
         <article>
             <h2><?php echo htmlspecialchars($article["title"]) ?></h2> 
@@ -40,6 +41,7 @@ if (isset($_GET['id'])){
         
      
     <?php else: ?>
+        <!--this runs when the article it is false or null-->
         <p>No articles found.</p>
     <?php endif; ?>
 
