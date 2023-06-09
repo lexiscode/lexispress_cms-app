@@ -28,14 +28,16 @@ if (isset($_GET['id'])){
     <?php if ($article): ?>
 
         <article>
-            <h2><?php echo htmlspecialchars($article["title"]) ?></h2> 
-            <p><?php echo htmlspecialchars($article["content"]) ?></p>
-            <p><?php echo $article["date_published"]?></p>
+            <!--had to change from assoc array to obj format in order to tally with the getArticleById method-->
+            <h2><?php echo htmlspecialchars($article->title) ?></h2> 
+            <p><?php echo htmlspecialchars($article->content) ?></p>
+            <p><?php echo $article->date_published?></p>
         </article>
 
-        <a href="edit_article.php?id=<?= $article['id']; ?>">Edit</a>
+        <!--we will repeat the same below too, array to obj -->
+        <a href="edit_article.php?id=<?= $article->id; ?>">Edit</a>
 
-        <form method= "POST" action="delete_article.php?id=<?= $article['id']; ?>">
+        <form method= "POST" action="delete_article.php?id=<?= $article->id; ?>">
             <button type="submit" name="delete">Delete</button>
         </form>
         
