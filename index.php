@@ -17,12 +17,15 @@ $sql = "SELECT *
         FROM article 
         ORDER BY date_published DESC;";
 
-$results = mysqli_query($conn, $sql); 
+// execute the sql statement, returning a result set as a PDOStatement object
+$results = $conn->query($sql); 
 
 if ($results === false)
-    echo mysqli_error($conn);
+
+    print_r($conn->errorInfo());
 else
-    $articles = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
+    $articles = $results->fetchAll(PDO::FETCH_ASSOC);
     //print_r($articles);  prints an associative array
 
 ?>
