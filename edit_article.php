@@ -4,20 +4,22 @@ require "classes/DbConnect.php";
 require "classes/GetArticleId.php";
 require "includes/validate_article_form.php";
 
-// connect to the database server
-$conn = connectDB();
+// Connect to the Database Server
+// create new database object and get the connection by calling the method in the class
+$db = new DbConnect();
+$conn = $db->getConn();
 
 // READING or RETRIEVING from the database to get specific article post by their ids
 if (isset($_GET['id'])){
 
     // checks if the article's id exits in the database, then returns an associative array, which stores in $article variable
-    $article = getArticle($conn, $_GET['id']); 
+    $article = GetArticleId::getArticleById($conn, $_GET['id']); 
 
     if ($article){
-        // Get array values from its keys, which then is stored as values in the HTML form below
-        $title = $article['title'];
-        $content = $article['content'];
-        $date_published = $article['date_published'];
+        // Get object values from its keys, which then is stored as values in the HTML form below
+        $title = $article->title;
+        $content = $article->content;
+        $date_published = $article->date_published;
     } else {
         // if a non-existing id number is in the link
         die("Invalid ID. No article found");
