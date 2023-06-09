@@ -5,7 +5,7 @@
  * 
  * A piece of writing for publication
  */
-class get_article_id
+class GetArticleId
 {
     /**
      * Get all the articles

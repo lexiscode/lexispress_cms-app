@@ -1,7 +1,9 @@
 <?php
 
 require "classes/DbConnect.php";
+require "classes/GetArticleId.php";
 require "includes/auth.php";
+
 
 // Initialize the session.
 session_start();
@@ -13,15 +15,7 @@ $db = new DbConnect();
 $conn = $db->getConn();
 
 // READING FROM THE DATABASE AND CHECKING FOR ERRORS
-$sql = "SELECT * 
-        FROM article
-        ORDER BY date_published DESC;";
-
-// Execute the sql statement, returning a result set as a PDOStatement object
-$results = $conn->query($sql); 
-
-$articles = $results->fetchAll(PDO::FETCH_ASSOC);
-//print_r($articles);  prints an associative array
+$articles = GetArticleId::getAll($conn);
 
 ?>
 
