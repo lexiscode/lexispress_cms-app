@@ -17,7 +17,7 @@
 
     <div>
         <label for="content">Content</label>
-        <textarea name="content" id="content" cols="30" rows="5" placeholder="Article's content" required><?= htmlspecialchars($article->content); ?></textarea>
+        <textarea name="content" id="content" cols="30" rows="5" placeholder="Article's content"><?= htmlspecialchars($article->content); ?></textarea>
     </div>
 
     <div>
