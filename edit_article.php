@@ -68,6 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <h2>Edit Article</h2>
 
 <!-- HTML form which is specially for holding old data values by getting them from the database -->
-<?php require "includes/article_form.php"; ?>
+<?php require "includes/update_article_form.php"; ?>
 <!--HTML Footer-->
 <?php require "includes/footer.php"; ?>

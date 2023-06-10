@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <h2>New Article</h2>
 
 <!-- HTML form -->
-<?php require "includes/article_form.php"; ?>
+<?php require "includes/new_article_form.php"; ?>
 
 <!--HTML Footer-->
 <?php require "includes/footer.php"; ?>
