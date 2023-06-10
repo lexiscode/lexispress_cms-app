@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $article->date_published = null;
             }
 
-            // UPDATE query
+            // UPDATE PDO query
             $result = $article->updateArticle($conn);
 
             if ($result){

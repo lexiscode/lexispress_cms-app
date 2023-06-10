@@ -58,8 +58,8 @@ class GetArticleId
      * @return boolean True if the update was successful, false otherwise
      */
      
-     public function updateArticle($conn)
-     {
+    public function updateArticle($conn)
+    {
             
         // update the data into the database server
         $sql = "UPDATE article 
@@ -90,7 +90,36 @@ class GetArticleId
         return $result;
 
        
-     }
+    }
+
+
+    
+    /**
+     * Delete the current article
+     * 
+     * @param object $conn Connection to the database
+     * 
+     * @return boolean True if the delete was successful, false otherwise
+     */
+
+    public function deleteArticle($conn)
+    {
+        // update the data into the database server
+        $sql = "DELETE FROM article 
+                WHERE id = :id";
+
+        // Prepares the statement for execution
+        $stmt = $conn->prepare($sql);
+
+        // Binds a value to a corresponding named/question-mark placeholder in the SQL statement that 
+        // was used to prepare the statement
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+        // Executes a PDO prepared statement
+        $result = $stmt->execute();
+
+        return $result;
+    }
 
      
 }
