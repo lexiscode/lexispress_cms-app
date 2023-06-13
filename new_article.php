@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $article->date_published = null;
             }
             
+            // Insert into the database
             $results = $article->newArticle($conn);
 
             // checking for errors, if none, then redirect the user to the new article page
@@ -53,8 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 header("Location: http://localhost/lexispress_cms-app/article.php?id={$article->id}"); 
                 exit;
             }
-        
-
             
         }
     }

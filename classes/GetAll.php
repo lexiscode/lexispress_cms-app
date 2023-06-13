@@ -18,8 +18,8 @@ class GetAll
     {
         // READING FROM THE DATABASE AND CHECKING FOR ERRORS
         $sql = "SELECT * 
-        FROM article
-        ORDER BY date_published DESC;";
+                FROM article
+                ORDER BY date_published DESC;";
 
         // Execute the sql statement, returning a result set as a PDOStatement object
         $results = $conn->query($sql); 

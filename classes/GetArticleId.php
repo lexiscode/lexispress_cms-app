@@ -63,10 +63,10 @@ class GetArticleId
             
         // update the data into the database server
         $sql = "UPDATE article 
-        SET title = :title, 
-            content = :content, 
-            date_published = :date_published
-        WHERE id = :id";
+                SET title = :title, 
+                    content = :content, 
+                    date_published = :date_published
+                WHERE id = :id";
 
         // Prepares the statement for execution
         $stmt = $conn->prepare($sql);
@@ -133,7 +133,7 @@ class GetArticleId
      public function newArticle($conn)
      {
              
-        // update the data into the database server
+        // Update the data into the database server
         $sql = "INSERT INTO article (title, content, date_published)
                 VALUES (:title, :content, :date_published)";
  
@@ -162,13 +162,6 @@ class GetArticleId
         }
  
      }
-
-
-
-
-
-
-
 
 
      

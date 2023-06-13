@@ -13,6 +13,7 @@ session_start();
 $db = new DbConnect();
 $conn = $db->getConn();
 
+
 // READING FROM THE DATABASE AND CHECKING FOR ERRORS
 $articles = GetAll::getAll($conn);
 
@@ -63,5 +64,3 @@ to access it -->
 
 <!-- HTML footer codes that ends with the closing body tag -->
 <?php require "includes/footer.php"; ?>
-
-
