@@ -26,26 +26,14 @@ if (isset($_GET['id'])){
 }
 
 
-/*
-The reason I chose to work with (mandate) POST below to GET here is so that if the user types in a delete url, it shouldn't 
-delete. The delete button is the only condition that can make that article to be deleted.
-*/
+// DELETE PDO query
+$results = $article->deleteArticle($conn);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    if (isset($_POST["delete"])){
-        
-        // DELETE PDO query
-        $results = $article->deleteArticle($conn);
-
-        // checking for errors, if none, then redirect the user to the new article page
-        if ($results){
-            // it is more advisable to use absolute paths below than relative path
-            header("Location: http://localhost/lexispress_cms-app/index.php"); 
-            exit;
-        }
-    }
-    
+// checking for errors, if none, then redirect the user to the new article page
+if ($results){
+    // it is more advisable to use absolute paths below than relative path
+    header("Location: http://localhost/lexispress_cms-app/index.php"); 
+    exit;
 }
-
-?>
-
+    
+    

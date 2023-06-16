@@ -37,9 +37,8 @@ if (isset($_GET['id'])){
         <!--we will repeat the same below too, array to obj -->
         <a href="edit_article.php?id=<?= $article->id; ?>">Edit</a>
 
-        <form method= "POST" action="delete_article.php?id=<?= $article->id; ?>">
-            <button type="submit" name="delete">Delete</button>
-        </form>
+        <a href="delete_article.php?id=<?= $article->id; ?>">Delete</a>
+        
         
      
     <?php else: ?>
