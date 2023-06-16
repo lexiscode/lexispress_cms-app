@@ -1,6 +1,6 @@
 <?php
 
-require "includes/init.php";
+require "../includes/init.php";
 /*
 require "classes/DbConnect.php";
 require "classes/GetArticleId.php";
@@ -9,14 +9,7 @@ require "classes/Auth.php";
 
 // Initialize the session.
 
-
-// NB: This below will no longer be necessary if you won't be displaying the new article link page for non-login users
-if (!isLoggedIn()){
-
-    die("You must be logged in");
-
-}
-
+Auth::requireLogin();
 
 $article = new GetArticleId();
 
@@ -28,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Connect to the Database Server
             // create new database object and get the connection by calling the method in the class
-            $conn = require "includes/db.php";
+            $conn = require "../includes/db.php";
 
             // getting fields contents, then checking for possible empty fields
             $article->title = $_POST['title'];
@@ -47,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             if ($results){
                 
                 // it is more advisable to use absolute paths below than relative path
-                header("Location: http://localhost/lexispress_cms-app/article.php?id={$article->id}"); 
+                header("Location: http://localhost/lexispress_cms-app/admin/article.php?id={$article->id}"); 
                 exit;
             }
             
@@ -58,16 +51,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 ?>
 
-
 <!--HTML header-->
-<?php require "includes/header.php"; ?>
+<?php require "../includes/header.php"; ?>
 
 <h2>New Article</h2>
 
 <!-- HTML form -->
-<?php require "includes/new_article_form.php"; ?>
+<?php require "../includes/new_article_form.php"; ?>
 
 <!--HTML Footer-->
-<?php require "includes/footer.php"; ?>
+<?php require "../includes/footer.php"; ?>
 
 
