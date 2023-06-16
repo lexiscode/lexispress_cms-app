@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Authentication
+ * 
+ * Login and logout
+ */
 class Auth
 {
     /**
@@ -22,7 +27,7 @@ class Auth
 
     public static function requireLogin()
     {
-        if (!static::isLoggedIn()){
+        if (! static::isLoggedIn()){
             die("Unauthorized. You must login first.");
         }
     }

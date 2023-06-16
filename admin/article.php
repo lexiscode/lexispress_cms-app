@@ -1,10 +1,10 @@
 <?php
 
 require "../includes/init.php";
-/*
-require "classes/DbConnect.php";
-require "classes/GetArticleId.php";
-*/
+
+/*require "../classes/DbConnect.php";
+require "../classes/GetArticleId.php";*/
+
 
 // in this case of the admin page, you must be login to access this page
 Auth::requireLogin();
@@ -25,8 +25,6 @@ if (isset($_GET['id'])){
 ?>
 
 <?php require "../includes/header.php"; ?>
-
-    <h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
 
     <!--if the article contents anything other than false or null, then run as true-->
     <?php if ($article): ?>

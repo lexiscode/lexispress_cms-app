@@ -1,12 +1,14 @@
 <?php
 
-require "includes/init.php";
-/*require "classes/DbConnect.php";
-require "classes/GetArticleId.php";*/
+require "../includes/init.php";
+/*require "../classes/DbConnect.php";
+require "../classes/GetArticleId.php";*/
 
+// in this case of the admin page, you must be login to access this page
+Auth::requireLogin();
 
 // Connect to the Database Server
-$conn = require "includes/db.php";
+$conn = require "../includes/db.php";
 
 // READING or RETRIEVING from the database to get specific article post by their ids
 if (isset($_GET['id'])){

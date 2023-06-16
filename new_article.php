@@ -8,17 +8,14 @@ require "classes/Auth.php";
 */
 
 // Initialize the session.
-session_start();
+
 
 // NB: This below will no longer be necessary if you won't be displaying the new article link page for non-login users
-Auth::requireLogin();
+if (!isLoggedIn()){
 
+    die("You must be logged in");
 
-// why didn't we also declare $errors = []; above here?
-/* The empty() below determines whether a variable is considered to be empty. A variable is considered 
-empty if it does not exist or if its value equals FALSE. empty() does not generate a warning if the 
-variable does not exist.
-*/
+}
 
 
 $article = new GetArticleId();

@@ -23,8 +23,6 @@ if (isset($_GET['id'])){
 
 <?php require "includes/header.php"; ?>
 
-    <h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
-
     <!--if the article contents anything other than false or null, then run as true-->
     <?php if ($article): ?>
 
@@ -33,14 +31,7 @@ if (isset($_GET['id'])){
             <h2><?php echo htmlspecialchars($article->title) ?></h2> 
             <p><?php echo htmlspecialchars($article->content) ?></p>
             <p><?php echo $article->date_published?></p>
-        </article>
-
-        <!--we will repeat the same below too, array to obj -->
-        <a href="edit_article.php?id=<?= $article->id; ?>">Edit</a>
-
-        <a href="delete_article.php?id=<?= $article->id; ?>">Delete</a>
-        
-        
+        </article>     
      
     <?php else: ?>
         <!--this runs when the article it is false or null-->

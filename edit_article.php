@@ -1,13 +1,13 @@
 <?php
 
-require "includes/init.php";
-/*
-require "classes/DbConnect.php";
-require "classes/GetArticleId.php";
-*/
+require "/includes/init.php";
+/*require "classes/DbConnect.php";
+require "classes/GetArticleId.php";*/
+
+
 
 // Connect to the Database Server
-$conn = require "includes/db.php";
+$conn = require "/includes/db.php";
 
 // READING or RETRIEVING from the database to get specific article post by their ids
 if (isset($_GET['id'])){
@@ -62,11 +62,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 <!--HTML header-->
-<?php require "includes/header.php"; ?>
+<?php require "/includes/header.php"; ?>
 
 <h2>Edit Article</h2>
 
 <!-- HTML form which is specially for holding old data values by getting them from the database -->
-<?php require "includes/update_article_form.php"; ?>
+<?php require "/includes/update_article_form.php"; ?>
 <!--HTML Footer-->
-<?php require "includes/footer.php"; ?>
+<?php require "/includes/footer.php"; ?>

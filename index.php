@@ -7,7 +7,6 @@ require "classes/Auth.php";*/
 
 
 // Initialize the session.
-session_start();
 
 // Connect to the Database Server
 $conn = require "includes/db.php";

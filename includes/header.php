@@ -16,6 +16,7 @@
     <nav>
         <ul>
             <li><a href="http://localhost/lexispress_cms-app/">Home</a></li>
+            
             <?php if (Auth::isLoggedIn()): ?>
 
                 <li><a href="http://localhost/lexispress_cms-app/admin/index.php">Admin</a></li>

@@ -6,9 +6,6 @@ require "classes/GetAll.php";
 require "classes/Auth.php";*/
 
 
-// Initialize the session.
-session_start();
-
 Auth::requireLogin();
 
 // Connect to the Database Server
