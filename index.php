@@ -31,7 +31,7 @@ $articles = GetAll::getAll($conn);
     <p>You are logged in. <a href="logout.php">Logout</a></p>
     <p>Welcome back!😊</p>
     <!-- only logged in user should access this link below-->
-    <!--<a href="new_article.php">New article</a>-->
+    <a href="new_article.php">New article</a>
 
 <?php else: ?>
     <p>You are logged out. <a href="login.php">Login</a></p>
@@ -39,7 +39,7 @@ $articles = GetAll::getAll($conn);
 
 <!--Below we want all users to see this New Article link, even though not everyone will be allowed
 to access it -->
-<a href="new_article.php">New article</a>
+<!--<a href="new_article.php">New article</a>-->
 
 <?php if(!empty($articles)): ?>
     <ul>
