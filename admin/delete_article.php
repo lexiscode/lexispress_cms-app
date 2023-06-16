@@ -33,7 +33,7 @@ $results = $article->deleteArticle($conn);
 // checking for errors, if none, then redirect the user to the new article page
 if ($results){
     // it is more advisable to use absolute paths below than relative path
-    header("Location: http://localhost/lexispress_cms-app/index.php"); 
+    header("Location: http://localhost/lexispress_cms-app/admin/index.php"); 
     exit;
 }
     

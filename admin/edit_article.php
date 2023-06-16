@@ -50,10 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
             if ($result){
                 // it is more advisable to use absolute paths below than relative path
-                header("Location: http://localhost/lexispress_cms-app/article.php?id={$article->id}"); // get id for which we wish to edit from
+                header("Location: http://localhost/lexispress_cms-app/admin/article.php?id={$article->id}"); // get id for which we wish to edit from
                 exit;
             }
-
             
         }
     }
