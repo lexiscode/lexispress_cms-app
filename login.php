@@ -19,10 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         if (!empty($_POST['username']) && !empty($_POST['password'])){
             if (User::authenticate($conn, $_POST['username'], $_POST['password'])){
 
-                // this helps prevent session fixation attacks
-                session_regenerate_id(true);
-
-                $_SESSION['is_logged_in'] = true;
+                Auth::login();
                 
                 // redirect to the index page
                 header('Location: index.php');

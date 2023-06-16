@@ -11,10 +11,7 @@ require "classes/Auth.php";
 session_start();
 
 // NB: This below will no longer be necessary if you won't be displaying the new article link page for non-login users
-if (!Auth::isLoggedIn()){
-    
-    die("Unauthorized. You must be logged in first." . PHP_EOL . "<a href='index.php'>Back To Homepage</a>");
-}
+Auth::requireLogin();
 
 
 // why didn't we also declare $errors = []; above here?
