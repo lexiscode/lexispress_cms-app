@@ -1,6 +1,6 @@
 <?php
 
-require "init.php";
+require "includes/init.php";
 /*
 require "classes/DbConnect.php";
 require "classes/User.php";
@@ -11,8 +11,8 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-    $db = new DbConnect();
-    $conn = $db->getConn();
+    // Connect to the Database Server
+    $conn = require "includes/db.php";
 
     // Check if the submit button has been clicked, and check if the fields ain't empty also
     if (isset($_POST['sign-in'])){

@@ -1,6 +1,6 @@
 <?php
 
-require "init.php";
+require "includes/init.php";
 /*
 require "classes/DbConnect.php";
 require "classes/GetArticleId.php";
@@ -34,8 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Connect to the Database Server
             // create new database object and get the connection by calling the method in the class
-            $db = new DbConnect();
-            $conn = $db->getConn();
+            $conn = require "includes/db.php";
 
             // getting fields contents, then checking for possible empty fields
             $article->title = $_POST['title'];

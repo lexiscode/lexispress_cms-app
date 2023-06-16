@@ -1,6 +1,6 @@
 <?php
 
-require "init.php";
+require "includes/init.php";
 /*require "classes/DbConnect.php";
 require "classes/GetAll.php";
 require "classes/Auth.php";*/
@@ -10,10 +10,7 @@ require "classes/Auth.php";*/
 session_start();
 
 // Connect to the Database Server
-// create new database object and get the connection by calling the method in the class
-$db = new DbConnect();
-$conn = $db->getConn();
-
+$conn = require "includes/db.php";
 
 // READING FROM THE DATABASE AND CHECKING FOR ERRORS
 $articles = GetAll::getAll($conn);
