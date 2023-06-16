@@ -1,5 +1,6 @@
 <?php
 
+require "classes/DbConnect.php";
 require "classes/User.php";
 
 // Initialize the session.
@@ -7,10 +8,13 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+    $db = new DbConnect();
+    $conn = $db->getConn();
+
     // Check if the submit button has been clicked, and check if the fields ain't empty also
     if (isset($_POST['sign-in'])){
         if (!empty($_POST['username']) && !empty($_POST['password'])){
-            if (User::authenticate($_POST['username'], $_POST['password'])){
+            if (User::authenticate($conn, $_POST['username'], $_POST['password'])){
 
                 // this helps prevent session fixation attacks
                 session_regenerate_id(true);
