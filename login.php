@@ -1,7 +1,10 @@
 <?php
 
+require "init.php";
+/*
 require "classes/DbConnect.php";
 require "classes/User.php";
+*/
 
 // Initialize the session.
 session_start();

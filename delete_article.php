@@ -1,7 +1,8 @@
 <?php
 
-require "classes/DbConnect.php";
-require "classes/GetArticleId.php";
+require "init.php";
+/*require "classes/DbConnect.php";
+require "classes/GetArticleId.php";*/
 
 
 // Connect to the Database Server

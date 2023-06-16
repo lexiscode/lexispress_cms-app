@@ -1,8 +1,9 @@
 <?php
 
-require "classes/DbConnect.php";
+require "init.php";
+/*require "classes/DbConnect.php";
 require "classes/GetAll.php";
-require "classes/Auth.php";
+require "classes/Auth.php";*/
 
 
 // Initialize the session.

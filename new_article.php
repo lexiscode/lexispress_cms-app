@@ -1,8 +1,11 @@
 <?php
 
+require "init.php";
+/*
 require "classes/DbConnect.php";
 require "classes/GetArticleId.php";
 require "classes/Auth.php";
+*/
 
 // Initialize the session.
 session_start();
