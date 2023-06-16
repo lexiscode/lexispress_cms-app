@@ -23,9 +23,6 @@ $articles = GetAll::getAll($conn);
 <!-- HTML header codes that ends with the body tag -->
 <?php require "../includes/header.php"; ?>
 
-<h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
-<h2>This is our Blog Posts</h2>
-
 
 <h2>Administration</h2>
 <a href="new_article.php">New article</a>
