@@ -1,13 +1,16 @@
 <?php
 
-require "includes/init.php";
+require "../includes/init.php";
 /*
 require "classes/DbConnect.php";
 require "classes/GetArticleId.php";
 */
 
+// in this case of the admin page, you must be login to access this page
+Auth::requireLogin();
+
 // Connect to the Database Server
-$conn = require "includes/db.php";
+$conn = require "../includes/db.php";
 
 // This gets the id from the browser tab when the save button was clicked in the new article page
 if (isset($_GET['id'])){
@@ -21,7 +24,7 @@ if (isset($_GET['id'])){
 }
 ?>
 
-<?php require "includes/header.php"; ?>
+<?php require "../includes/header.php"; ?>
 
     <h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
 
@@ -47,6 +50,6 @@ if (isset($_GET['id'])){
         <p>No articles found.</p>
     <?php endif; ?>
 
-<?php require "includes/footer.php"; ?>
+<?php require "../includes/footer.php"; ?>
 
 
