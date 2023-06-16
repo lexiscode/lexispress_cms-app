@@ -65,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <!--HTML header-->
 <?php require "includes/header.php"; ?>
 
-<h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
 <h2>New Article</h2>
 
 <!-- HTML form -->

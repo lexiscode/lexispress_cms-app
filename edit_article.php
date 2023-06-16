@@ -64,7 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <!--HTML header-->
 <?php require "includes/header.php"; ?>
 
-<h1 align="center"><a href="http://localhost/lexispress_cms-app/index.php" style="text-decoration: none">-- LexisPress --</a></h1>
 <h2>Edit Article</h2>
 
 <!-- HTML form which is specially for holding old data values by getting them from the database -->
