@@ -2,7 +2,7 @@
 
 require "classes/DbConnect.php";
 require "classes/GetAll.php";
-require "includes/auth.php";
+require "classes/Auth.php";
 
 
 // Initialize the session.
@@ -29,7 +29,7 @@ $articles = GetAll::getAll($conn);
 <!-- Working with Sessions-->
 <!--<php var_dump($_SESSION); ?> -->
 
-<?php if (isLoggedIn()): ?>
+<?php if (Auth::isLoggedIn()): ?>
     <p>You are logged in. <a href="logout.php">Logout</a></p>
     <p>Welcome back!😊</p>
     <!-- only logged in user should access this link below-->
