@@ -2,10 +2,9 @@
 
 require "../includes/init.php";
 /*require "classes/DbConnect.php";
-require "classes/GetAll.php";
 require "classes/Auth.php";*/
 
-
+// restricts access to this page except the user is logged in
 Auth::requireLogin();
 
 // Connect to the Database Server
@@ -23,6 +22,7 @@ $articles = GetAll::getAll($conn);
 
 <h2>Administration</h2>
 <a href="new_article.php">New article</a>
+<br> <br>
 
 <?php if(!empty($articles)): ?>
     <table>

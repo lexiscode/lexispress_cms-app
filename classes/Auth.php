@@ -25,7 +25,7 @@ class Auth
      * @return void
      */
 
-    public static function requireLogin()
+     public static function requireLogin()
     {
         if (! static::isLoggedIn()){
             die("Unauthorized. You must login first.");
