@@ -1,10 +1,9 @@
 <?php
 
 require "includes/init.php";
-/*
-require "classes/DbConnect.php";
+/*require "classes/DbConnect.php";
 require "classes/User.php";
-*/
+require "classes/Auth.php;"*/
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -23,11 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 header('Location: index.php');
                 exit;
 
-            } else {
-
-                $error = "login details incorrect";
             }
+        
+        }else {
+
+            $error = "login details incorrect";
         }
+        
     }
 }
 
@@ -43,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <form method="POST" action="">
     <label for="username">Username</label>
-    <input type="text" name="username" id="username">
+    <input type="text" name="username" id="username" require>
     <br> <br>
     <label for="password">Password</label>
-    <input type="password" name="password" id="password">
+    <input type="password" name="password" id="password" require>
     <br> <br>
 
     <button type="submit" name="sign-in">Sign in</button>

@@ -29,8 +29,6 @@ class GetAll
 
         return $articles;
     }
-
-
     
 }
 

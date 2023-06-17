@@ -32,10 +32,11 @@ class User
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
         $stmt->execute();
 
-        // fetches the results into a variable
+        // fetches the results into a variable as an object
         $user = $stmt->fetch();
 
         if ($user){
+            // verifies actual passwd with hashed passwd
             return password_verify($password, $user->password);
         }
     }
