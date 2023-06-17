@@ -155,7 +155,7 @@ class GetArticleId
         $result = $stmt->execute();
  
         if ($result){
-
+            // gets the last id
             $this->id = $conn->lastInsertId();
             return true;
 

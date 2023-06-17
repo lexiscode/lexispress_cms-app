@@ -13,7 +13,7 @@ $conn = require "../includes/db.php";
 // READING or RETRIEVING from the database to get specific article post by their ids
 if (isset($_GET['id'])){
 
-    // checks if the article's id exits in the database, then returns an associative array, which stores in $article variable
+    // checks if the article's id exits in the database, then returns an object, which stores in $article variable
     $article = GetArticleId::getArticleById($conn, $_GET['id']); 
 
     if (!$article){
