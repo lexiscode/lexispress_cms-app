@@ -10,8 +10,12 @@ Auth::requireLogin();
 // Connect to the Database Server
 $conn = require "../includes/db.php";
 
+// using tenary or null-coalescing operator to set default page parameters and isset parameters in one line
+// $paginator = new Paginator(isset($_GET['page']) ? $_GET['page'] :1, 6);
+$paginator = new Paginator($_GET['page'] ?? 1, 6, GetAll::getTotalRecords($conn));
+
 // READING FROM THE DATABASE AND CHECKING FOR ERRORS
-$articles = GetAll::getAll($conn);
+$articles = GetAll::getPage($conn, $paginator->limit, $paginator->offset);
 
 ?>
 
@@ -39,6 +43,28 @@ $articles = GetAll::getAll($conn);
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <!-- PAGINATION -->
+    <nav>
+        <ul>
+            <li>
+                <?php if ($paginator->previous):?>
+                    <a href="/lexispress_cms-app/admin/index.php?page=<?= $paginator->previous; ?>">Previous</a>
+                <?php else:?>
+                    Previous
+                <?php endif;?>
+            </li>
+            <li>
+                <?php if ($paginator->next): ?>
+                    <a href="/lexispress_cms-app/admin/index.php?page=<?= $paginator->next; ?>">Next</a>
+                <?php else:?>
+                    Next
+                <?php endif;?>
+            </li>
+        </ul>
+    </nav>
+
+
 <?php else: ?>
     <p>No articles found.</p>
 <?php endif; ?>

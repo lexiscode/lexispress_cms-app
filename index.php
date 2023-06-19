@@ -40,10 +40,10 @@ $articles = GetAll::getPage($conn, $paginator->limit, $paginator->offset);
         <?php endforeach; ?>
     </ul>
 
+    <!-- PAGINATION -->
     <nav>
         <ul>
             <li>
-                <!-- pagination -->
                 <?php if ($paginator->previous):?>
                     <a href="?page=<?= $paginator->previous; ?>">Previous</a>
                 <?php else:?>
