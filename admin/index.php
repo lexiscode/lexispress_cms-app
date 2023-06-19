@@ -45,25 +45,7 @@ $articles = GetAll::getPage($conn, $paginator->limit, $paginator->offset);
     </table>
 
     <!-- PAGINATION -->
-    <nav>
-        <ul>
-            <li>
-                <?php if ($paginator->previous):?>
-                    <a href="/lexispress_cms-app/admin/index.php?page=<?= $paginator->previous; ?>">Previous</a>
-                <?php else:?>
-                    Previous
-                <?php endif;?>
-            </li>
-            <li>
-                <?php if ($paginator->next): ?>
-                    <a href="/lexispress_cms-app/admin/index.php?page=<?= $paginator->next; ?>">Next</a>
-                <?php else:?>
-                    Next
-                <?php endif;?>
-            </li>
-        </ul>
-    </nav>
-
+    <?php require "../includes/pagination.php"; ?>
 
 <?php else: ?>
     <p>No articles found.</p>
