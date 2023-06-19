@@ -12,7 +12,7 @@ $conn = require "includes/db.php";
 
 // using tenary or null-coalescing operator to set default page parameters and isset parameters in one line
 // $paginator = new Paginator(isset($_GET['page']) ? $_GET['page'] :1, 4);
-$paginator = new Paginator($_GET['page'] ?? 1, 4);
+$paginator = new Paginator($_GET['page'] ?? 1, 4, GetAll::getTotalRecords($conn));
 
 // READING FROM THE DATABASE AND CHECKING FOR ERRORS
 $articles = GetAll::getPage($conn, $paginator->limit, $paginator->offset);
@@ -43,10 +43,19 @@ $articles = GetAll::getPage($conn, $paginator->limit, $paginator->offset);
     <nav>
         <ul>
             <li>
-                <a href="?page=<?= $paginator->previous; ?>">Previous</a>
+                <!-- pagination -->
+                <?php if ($paginator->previous):?>
+                    <a href="?page=<?= $paginator->previous; ?>">Previous</a>
+                <?php else:?>
+                    Previous
+                <?php endif;?>
             </li>
             <li>
-                <a href="?page=<?= $paginator->next; ?>">Next</a>
+                <?php if ($paginator->next): ?>
+                    <a href="?page=<?= $paginator->next; ?>">Next</a>
+                <?php else:?>
+                    Next
+                <?php endif;?>
             </li>
         </ul>
     </nav>

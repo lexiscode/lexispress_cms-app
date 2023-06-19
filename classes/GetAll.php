@@ -55,6 +55,19 @@ class GetAll
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    /**
+     * Get a count of the total number of records
+     * 
+     * @param object $conn Connection to the database
+     * 
+     * @param integer The total number of records 
+     */
+    public static function getTotalRecords($conn)
+    {
+        return $conn->query('SELECT COUNT(*) FROM article')->fetchColumn();
+    }
     
 }
 
