@@ -6,13 +6,16 @@ require "classes/GetAll.php";
 require "classes/Auth.php";*/
 
 
-// Initialize the session.
-
 // Connect to the Database Server
 $conn = require "includes/db.php";
 
+
+// using tenary or null-coalescing operator to set default page parameters and isset parameters in one line
+// $paginator = new Paginator(isset($_GET['page']) ? $_GET['page'] :1, 4);
+$paginator = new Paginator($_GET['page'] ?? 1, 4);
+
 // READING FROM THE DATABASE AND CHECKING FOR ERRORS
-$articles = GetAll::getPage($conn, 4, 0);
+$articles = GetAll::getPage($conn, $paginator->limit, $paginator->offset);
 
 ?>
 
@@ -36,6 +39,18 @@ $articles = GetAll::getPage($conn, 4, 0);
             </li>
         <?php endforeach; ?>
     </ul>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="?page=<?= $paginator->previous; ?>">Previous</a>
+            </li>
+            <li>
+                <a href="?page=<?= $paginator->next; ?>">Next</a>
+            </li>
+        </ul>
+    </nav>
+
 <?php else: ?>
     <p>No articles found.</p>
 <?php endif; ?>

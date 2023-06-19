@@ -42,7 +42,7 @@ class GetAll
     {
         $sql = "SELECT * 
                 FROM article 
-                ORDER BY date_published
+                ORDER BY date_published DESC
                 LIMIT :limit
                 OFFSET :offset";
 
