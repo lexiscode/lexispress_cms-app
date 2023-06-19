@@ -162,8 +162,5 @@ class GetArticleId
         }
  
      }
-
-
-     
 }
 

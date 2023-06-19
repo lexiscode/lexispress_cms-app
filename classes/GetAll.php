@@ -29,6 +29,32 @@ class GetAll
 
         return $articles;
     }
+
+
+    /**
+     * Get a page of article
+     * 
+     * @param object $conn Connection to the database
+     * @param integer $limit Number of records to return
+     * @param integer $offset Number of records to skip starting
+     */
+    public static function getPage($conn, $limit, $offset)
+    {
+        $sql = "SELECT * 
+                FROM article 
+                ORDER BY date_published
+                LIMIT :limit
+                OFFSET :offset";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     
 }
 

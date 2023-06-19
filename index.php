@@ -12,7 +12,7 @@ require "classes/Auth.php";*/
 $conn = require "includes/db.php";
 
 // READING FROM THE DATABASE AND CHECKING FOR ERRORS
-$articles = GetAll::getAll($conn);
+$articles = GetAll::getPage($conn, 4, 0);
 
 ?>
 
