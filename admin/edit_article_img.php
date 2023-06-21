@@ -88,11 +88,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $check_status = move_uploaded_file($_FILES['file']['tmp_name'], $destination);
 
         if ($check_status){
-            // echo "File uploaded successfully";
+
+            // this holds/stores any previously uploaded image
+            $previous_image = $article->image_file;
+
+            //echo "File uploaded successfully";
             $confirm = $article->setImageFile($conn, $filename);
             
             if ($confirm){
-                header("Location: http://localhost/lexispress_cms-app/admin/article.php?id={$article->id}"); 
+
+                if ($previous_image){
+                    unlink("../uploads/$previous_image"); // deletes the previous image
+                }
+                
+                header("Location: http://localhost/lexispress_cms-app/admin/edit_article_img.php?id={$article->id}"); 
                 exit;
             }
 
