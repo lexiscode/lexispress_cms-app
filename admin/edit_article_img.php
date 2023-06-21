@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
     } catch (Exception $e){
-        echo $e->getMessage();
+        $error = $e->getMessage();
     }
 
 }
@@ -125,7 +125,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <?php if ($article->image_file): ?>
     <img src="../uploads/<?= $article->image_file; ?>" alt="">
+    <a href="http://localhost/lexispress_cms-app/admin/delete_article_img.php?id=<?= $article->id; ?>">Delete</a>
 <?php endif; ?>
+
+
+<!--Prints out the any error messages-->
+<?php if (isset($error)): ?>
+    <p><?= $error ?></p>
+<?php endif; ?>
+
 
 <form action="" method="POST" enctype="multipart/form-data">
     <div>
