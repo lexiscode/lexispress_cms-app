@@ -68,9 +68,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         // prevent filename code injections first
         $pathinfo = pathinfo($_FILES['file']['name']);
         $base = $pathinfo['filename'];
-        $base = preg_replace("/[^a-zA-Z0-9_-]/", "_", $base); // this replaces any of those symbols to an underscore_
-        $filename = $base . "." . $pathinfo['extension'];
+        // replace any characters that ain't letters, numbers, underscores, or hypens with an underscore
+        $base = preg_replace("/[^a-zA-Z0-9_-]/", "_", $base);
+        // limits the filename to be 200 characters max
+        $base = mb_substr($base, 0, 200);
 
+        $filename = $base . "." . $pathinfo['extension'];
         $destination = "../uploads/$filename";
 
         // check if the filename already exists first before moving the file to the "uploads" directory
@@ -81,9 +84,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $i++;
         }
 
+        // moves the file to the "uploads" directory
         $check_status = move_uploaded_file($_FILES['file']['tmp_name'], $destination);
+
         if ($check_status){
-            echo "File uploaded successfully";
+            // echo "File uploaded successfully";
+            $confirm = $article->setImageFile($conn, $filename);
+            
+            if ($confirm){
+                header("Location: http://localhost/lexispress_cms-app/admin/article.php?id={$article->id}"); 
+                exit;
+            }
+
         }else{
             throw new Exception("Unable to move uploaded file");
         }

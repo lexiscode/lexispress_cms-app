@@ -11,6 +11,7 @@ class GetArticleId
     public $title;
     public $description;
     public $date_published;
+    public $image_file;
 
 
     /**
@@ -130,8 +131,8 @@ class GetArticleId
      * @return boolean True if the insert was successful, false otherwise
      */
      
-     public function newArticle($conn)
-     {
+    public function newArticle($conn)
+    {
              
         // Update the data into the database server
         $sql = "INSERT INTO article (title, content, date_published)
@@ -161,6 +162,30 @@ class GetArticleId
 
         }
  
-     }
+    }
+
+
+    /**
+     * Update the image file property
+     * 
+     * @param object $conn Connection to the database
+     * @param string $filename The filename of the image file
+     * 
+     * @return boolean True if it was successful, false otherwise
+     */
+    public function setImageFile($conn, $filename)
+    {
+        $sql = "UPDATE article
+                SET image_file = :image_file
+                WHERE id = :id";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $stmt->bindValue(':image_file', $filename, PDO::PARAM_STR);
+
+        return $stmt->execute();
+
+    }
 }
 
