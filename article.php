@@ -29,6 +29,11 @@ if (isset($_GET['id'])){
         <article>
             <!--had to change from assoc array to obj format in order to tally with the getArticleById method-->
             <h2><?php echo htmlspecialchars($article->title) ?></h2> 
+
+            <?php if ($article->image_file): ?>
+                <img src="uploads/<?= $article->image_file; ?>" alt="">
+            <?php endif; ?>
+
             <p><?php echo htmlspecialchars($article->content) ?></p>
             <p><?php echo $article->date_published?></p>
         </article>     
