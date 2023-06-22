@@ -11,7 +11,7 @@ Auth::requireLogin();
 $conn = require "../includes/db.php";
 
 // using tenary or null-coalescing operator to set default page parameters and isset parameters in one line
-// $paginator = new Paginator(isset($_GET['page']) ? $_GET['page'] :1, 6);
+// $paginator = new Paginator(isset($_GET['page']) ? $_GET['page'] :1, 6, GetAll::getTotalRecords($conn));
 $paginator = new Paginator($_GET['page'] ?? 1, 6, GetAll::getTotalRecords($conn));
 
 // READING FROM THE DATABASE AND CHECKING FOR ERRORS

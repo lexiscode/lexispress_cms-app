@@ -72,9 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $base = preg_replace("/[^a-zA-Z0-9_-]/", "_", $base);
         // limits the filename to be 200 characters max
         $base = mb_substr($base, 0, 200);
-
         $filename = $base . "." . $pathinfo['extension'];
-        $destination = "../uploads/$filename";
+
+        $destination = "../uploads/$filename"; // prevents code injection
 
         // check if the filename already exists first before moving the file to the "uploads" directory
         $i = 1;
