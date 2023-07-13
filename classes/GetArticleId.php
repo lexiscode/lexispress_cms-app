@@ -138,6 +138,54 @@ class GetArticleId
     }
 
 
+    /**
+     * Set the article categories
+     * 
+     * @param object $conn Connection to the database
+     * @param array $ids Category IDs
+     * 
+     * @return void
+     */
+    public function setCategories($conn, $ids)
+    {
+        // this will run only when there's a selected category id(s), i.e. when its TRUE
+        if ($ids){
+            $sql = "INSERT IGNORE INTO article_category (article_id, category_id)
+                    VALUES ({$this->id}, :category_id)";
+
+            $stmt = $conn->prepare($sql);
+
+            foreach ($ids as $id){
+                $stmt->bindValue(':category_id', $id, PDO::PARAM_INT);
+                $stmt->execute();
+            }
+        }
+
+        // this below will always run, to remove unselected category(ies) and maintain the selected ones
+        $sql = "DELETE FROM article_category
+                WHERE article_id = {$this->id}";
+
+        // if the id array isn't empty, that is if there are selected categories, maintain it by doing this
+        if ($ids){
+
+            // array_fill - Fill an array with values array_fill(start_index, int num, values)
+            $placeholders = array_fill(0, count($ids), '?');
+
+            // appending/adding to the sql query statement above
+            // NOT IN - this is the same as NOT (expr IN(value...))
+            $sql .= " AND category_id NOT IN (" . implode(", ", $placeholders) . ")";
+        }    
+
+        $stmt = $conn->prepare($sql);
+
+        foreach ($ids as $i => $id){
+            $stmt->bindValue($i + 1, $id, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+    }
+
+
     
     /**
      * Delete the current article

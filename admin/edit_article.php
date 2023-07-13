@@ -28,12 +28,12 @@ if (isset($_GET['id'])){
 }
 
 
-// This retrieves update page's already selected categories from the database
-// array_column() gets the categories ids column only
-$category_ids = array_column($article->getCategories($conn, $_GET['id']), 'id');
-
 // This gets all categories from the database
 $categories = Category::getAll($conn);
+
+// This retrieves update page's already selected categories from the database
+// array_column() gets the categories id column data only
+$category_ids = array_column($article->getCategories($conn, $_GET['id']), 'id');
 
 
 // REPEAT VALIDATION, no need declaring $title, $content, or $date_published variables again here
@@ -48,6 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $article->content = $_POST['content'];
             $article->date_published = $_POST['date_published'];
 
+            // this works when category(ies) is selected and also if none is selected
+            $category_ids = $_POST['category'] ?? []; 
+
             // makes the date field "null" by default if not filled
             if ($article->date_published == ''){
                 $article->date_published = null;
@@ -57,6 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $result = $article->updateArticle($conn);
 
             if ($result){
+
+                // inserting selected categories into the database
+                $article->setCategories($conn, $category_ids);
+
                 // it is more advisable to use absolute paths below than relative path
                 header("Location: http://localhost/lexispress_cms-app/admin/article.php?id={$article->id}"); // get id for which we wish to edit from
                 exit;
