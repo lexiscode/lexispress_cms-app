@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         switch ($_FILES['file']['error']){
             case UPLOAD_ERR_OK:
                 break;
-            case UPLOAD_ERR__NO_FILE:
+            case UPLOAD_ERR_NO_FILE:
                 throw new Exception("No file uploaded!");
                 break;
             case UPLOAD_ERR_INI_SIZE:

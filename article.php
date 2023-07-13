@@ -13,7 +13,7 @@ $conn = require "includes/db.php";
 if (isset($_GET['id'])){
 
     // Reading from the database to get specific article row by their id
-    $article = GetArticleId::getArticleById($conn, $_GET['id']); // this holds an data in object format
+    $article = GetArticleId::getWithCategories($conn, $_GET['id']); // this holds an data in object format
     
 } else {
     // no error message printed when there's no id included in the url link
@@ -28,14 +28,25 @@ if (isset($_GET['id'])){
 
         <article>
             <!--had to change from assoc array to obj format in order to tally with the getArticleById method-->
-            <h2><?php echo htmlspecialchars($article->title) ?></h2> 
+            <h2><?php echo htmlspecialchars($article[0]['title']) ?></h2> 
 
-            <?php if ($article->image_file): ?>
-                <img src="uploads/<?= $article->image_file; ?>" alt="">
+            <?php if ($article[0]['image_file']): ?>
+                <img src="uploads/<?= $article[0]['image_file']; ?>" alt="">
             <?php endif; ?>
 
-            <p><?php echo htmlspecialchars($article->content) ?></p>
-            <p><?php echo $article->date_published?></p>
+            <p><?php echo htmlspecialchars($article[0]['content']) ?></p>
+
+            <!--only those with categories will make this code below to show-->
+            <?php if ($article[0]['category_name']): ?>
+                <p>Categories:
+                    <?php foreach ($article as $a): ?>
+                        <?= htmlspecialchars($a['category_name']); ?>
+                    <?php endforeach; ?>
+                </p>
+            <?php endif; ?>
+
+
+            <p><?php echo $article[0]['date_published']?></p>
         </article>     
      
     <?php else: ?>

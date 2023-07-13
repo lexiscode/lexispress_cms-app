@@ -27,12 +27,7 @@ class GetArticleId
         // This GETS an article row from the database by id
         // in PDO we can use "?" or ":id" but the latter is best, any name can be used other than "id" jsyk 
         $sql = "SELECT * FROM article WHERE id = :id"; 
-
-        // Prepares a statement for execution and returns a PDOstatement object
         $stmt = $conn->prepare($sql);
-
-        // Binds a value to a corresponding named/question-mark placeholder in the SQL statement that was used to prepare the statement. 
-        // NB: PARAM_INT for int type of parameter, PARAM_STR for string type of parameter, PARAM_BOOL for boolean type of parameter
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
         // Set the default fetch mode for this statement
@@ -48,7 +43,58 @@ class GetArticleId
         }
     }
 
+    /**
+     * Get the article record based on the ID along with associated categories, if any
+     * @param object $conn Connection to the database
+     * @param integer $id the article ID
+     * 
+     * @return array The article data with categories
+     */
+    public static function getWithCategories($conn, $id)
+    {
+        $sql = "SELECT article.*, category.name AS category_name
+                FROM article
+                LEFT JOIN article_category
+                ON article.id = article_category.article_id
+                LEFT JOIN category
+                ON article_category.category_id = category.id
+                WHERE article.id = :id";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // This returns an array
+    }
+
     
+    /**
+     * Get the article's categories
+     * 
+     * @param object $conn Connection to the database
+     * @return array The category data
+     */
+    public function getCategories($conn)
+    {
+        $sql = "SELECT category.*
+                FROM category
+                JOIN article_category
+                ON category.id = article_category_id
+                WHERE article.id = :id";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // This returns an array
+    }
+
+
+
+
+
 
 
      /**

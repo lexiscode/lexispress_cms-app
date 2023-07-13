@@ -27,6 +27,9 @@ if (isset($_GET['id'])){
 }
 
 
+$categories = Category::getAll($conn);
+
+
 
 // REPEAT VALIDATION, no need declaring $title, $content, or $date_published variables again here
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
