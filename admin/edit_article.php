@@ -2,7 +2,8 @@
 
 require "../includes/init.php";
 /*require "../classes/DbConnect.php";
-require "../classes/GetArticleId.php";*/
+require "../classes/GetArticleId.php";
+require "../classes/Category.php"; */
 
 // in this case of the admin page, you must be login to access this page
 Auth::requireLogin();
@@ -27,8 +28,12 @@ if (isset($_GET['id'])){
 }
 
 
-$categories = Category::getAll($conn);
+// This retrieves update page's already selected categories from the database
+// array_column() gets the categories ids column only
+$category_ids = array_column($article->getCategories($conn, $_GET['id']), 'id');
 
+// This gets all categories from the database
+$categories = Category::getAll($conn);
 
 
 // REPEAT VALIDATION, no need declaring $title, $content, or $date_published variables again here

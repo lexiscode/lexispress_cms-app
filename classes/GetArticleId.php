@@ -75,12 +75,15 @@ class GetArticleId
      * @param object $conn Connection to the database
      * @return array The category data
      */
-    public function getCategories($conn)
+    public function getCategories($conn, $id)
     {
+
         $sql = "SELECT category.*
                 FROM category
                 JOIN article_category
-                ON category.id = article_category_id
+                ON category.id = article_category.category_id
+                JOIN article
+                ON article.id = article_category.article_id
                 WHERE article.id = :id";
 
         $stmt = $conn->prepare($sql);
@@ -90,10 +93,6 @@ class GetArticleId
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC); // This returns an array
     }
-
-
-
-
 
 
 
