@@ -124,8 +124,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <h2>Edit Article Image</h2>
 
 <?php if ($article->image_file): ?>
+
     <img src="../uploads/<?= $article->image_file; ?>" alt="">
-    <a href="http://localhost/lexispress_cms-app/admin/delete_article_img.php?id=<?= $article->id; ?>">Delete</a>
+    <a class="delete" href="http://localhost/lexispress_cms-app/admin/delete_article_img.php?id=<?= $article->id; ?>">Delete</a>
+
 <?php endif; ?>
 
 

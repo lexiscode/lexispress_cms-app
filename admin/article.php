@@ -58,7 +58,7 @@ if (isset($_GET['id'])){
         <!--we will repeat the same below too, array to obj -->
         <a href="edit_article.php?id=<?= $article[0]['id']; ?>">Edit</a>
 
-        <a href="delete_article.php?id=<?= $article[0]['id']; ?>">Delete</a>
+        <a class="delete" href="delete_article.php?id=<?= $article[0]['id']; ?>">Delete</a>
 
         <a href="edit_article_img.php?id=<?= $article[0]['id']; ?>">Edit Image</a>
      
@@ -67,6 +67,8 @@ if (isset($_GET['id'])){
         <p>No articles found.</p>
     <?php endif; ?>
 
+
+<!--HTML Footer-->
 <?php require "../includes/footer.php"; ?>
 
 

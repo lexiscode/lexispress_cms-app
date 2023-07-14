@@ -2,7 +2,7 @@
     <p>* <i><?= $error ?></i></p>
 <?php endif; ?>
 
-<form method="POST">
+<form method="POST" id="formArticle">
     <!-- the value(s) set below are only active for edit_article page, no data is retrieved in a new_article page; 
     even though this form is used for both pages -->
     <div>
