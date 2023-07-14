@@ -40,11 +40,17 @@ class GetAll
      */
     public static function getPage($conn, $limit, $offset)
     {
-        $sql = "SELECT * 
+        // this reads out all articles information from the database, including the categories
+        $sql = "SELECT a.*, category.name AS category_name
+                FROM (SELECT * 
                 FROM article 
                 ORDER BY date_published DESC
                 LIMIT :limit
-                OFFSET :offset";
+                OFFSET :offset) AS a
+                LEFT JOIN article_category
+                ON a.id = article_category.article_id
+                LEFT JOIN category
+                ON article_category.category_id = category.id";
 
         $stmt = $conn->prepare($sql);
 
@@ -53,7 +59,25 @@ class GetAll
 
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // this helps preventing returning multiple duplicate categories data
+        $articles = [];
+        $previous_id = null;
+
+        foreach ($results as $row) {
+
+            $article_id = $row['id'];
+            if ($article_id != $previous_id){
+                $row['category_names'] = [];
+                $articles[$article_id] = $row;
+            }
+            $articles[$article_id]['category_names'][] = $row['category_name'];
+            $previous_id = $article_id;
+
+        }
+        // returns array of unrepeated articles
+        return $articles;
     }
 
 

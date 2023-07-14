@@ -35,6 +35,15 @@ $articles = GetAll::getPage($conn, $paginator->limit, $paginator->offset);
                     <h2><?= htmlspecialchars($article["title"]) ?></h2> 
                     <p><?= htmlspecialchars($article["content"]) ?></p>
                     <p><?= $article["date_published"]?></p>
+
+                    <?php if ($article["category_names"]): ?>
+                        <p>Categories:
+                            <?php foreach ($article["category_names"] as $name): ?>
+                                <?= htmlspecialchars($name); ?>
+                            <?php endforeach; ?>
+                        </p>
+                    <?php endif; ?>
+
                     <i><a href="article.php?id=<?= $article['id'];?>">Read more</a></i>
                 </article>
             </li>

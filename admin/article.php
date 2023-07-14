@@ -61,8 +61,6 @@ if (isset($_GET['id'])){
         <a href="delete_article.php?id=<?= $article[0]['id']; ?>">Delete</a>
 
         <a href="edit_article_img.php?id=<?= $article[0]['id']; ?>">Edit Image</a>
-        
-        
      
     <?php else: ?>
         <!--this runs when the article it is false or null-->
