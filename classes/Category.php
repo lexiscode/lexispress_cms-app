@@ -5,7 +5,7 @@
  * 
  * Groupings for articles
  */
-class category
+class Category
 {
     /**
      * Get all the categories

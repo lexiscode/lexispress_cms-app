@@ -16,8 +16,8 @@ class DbConnect
     {
         $db_host = "localhost";
         $db_name = "lexis_cms";
-        $db_user = "lexis";
-        $db_passwd = "fs86RDF8*FebyM@4";
+        $db_user = "root";
+        $db_passwd = "";
 
         $dsn = 'mysql:host='.$db_host. ';dbname='.$db_name.';charset=utf8';
         
